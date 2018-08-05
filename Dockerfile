@@ -12,7 +12,7 @@ ENV INVOICEPLANE_BUILD_DIR=${INVOICEPLANE_CACHE_DIR}/build \
     INVOICEPLANE_RUNTIME_DIR=${INVOICEPLANE_CACHE_DIR}/runtime
 
 RUN apt-get update \
- && DEBIAN_FRONTEND=noninteractive apt-get install -y wget sudo unzip \
+ && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends --no-install-suggests wget sudo unzip \
       php${PHP_VERSION}-fpm php${PHP_VERSION}-cli php${PHP_VERSION}-mysql \
       php${PHP_VERSION}-gd php${PHP_VERSION}-json php${PHP_VERSION}-mbstring \
       php${PHP_VERSION}-recode php${PHP_VERSION}-xmlrpc \
@@ -22,7 +22,7 @@ RUN apt-get update \
 
 COPY assets/build/ ${INVOICEPLANE_BUILD_DIR}/
 
-RUN bash ${INVOICEPLANE_BUILD_DIR}/install.sh
+#RUN bash ${INVOICEPLANE_BUILD_DIR}/install.sh
 
 COPY assets/runtime/ ${INVOICEPLANE_RUNTIME_DIR}/
 
